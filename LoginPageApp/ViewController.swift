@@ -12,8 +12,33 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        loadItems()
     }
-
-
+    
+    private func loadItems() {
+        
+        loadAppLogo()
+    }
+    
+    private func loadAppLogo() {
+        
+        let logo = UILabel()
+        
+        logo.translatesAutoresizingMaskIntoConstraints = false
+        logo.text = "Your Logo"
+        logo.font = UIFont(name: "Poppins-SemiBold", size: 18)
+        
+        self.view.addSubview(logo)
+        
+        NSLayoutConstraint.activate( [
+            
+            logo.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 26),
+            logo.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 18),
+            logo.widthAnchor.constraint(equalToConstant: 90),
+            logo.heightAnchor.constraint(equalToConstant: 27),
+            
+        ] )
+        
+    }
 }
 
