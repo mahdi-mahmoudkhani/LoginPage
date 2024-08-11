@@ -23,6 +23,7 @@ class ViewController: UIViewController {
         loadEmailTitle()
         loadPasswordTitle()
         loadLoginOptionsTitle()
+        loadLoginOptionsLogos()
     }
     
     private func loadAppLogo() {
@@ -155,6 +156,23 @@ class ViewController: UIViewController {
             
             title.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             title.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 642),
+            
+        ] )
+    }
+    
+    private func loadLoginOptionsLogos() {
+        
+        let appleLogo = UIButton()
+        
+        appleLogo.translatesAutoresizingMaskIntoConstraints = false
+        appleLogo.setImage(UIImage(named: "apple"), for: .normal)
+        
+        self.view.addSubview(appleLogo)
+        
+        NSLayoutConstraint.activate( [
+            
+            appleLogo.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            appleLogo.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 691)
             
         ] )
     }
