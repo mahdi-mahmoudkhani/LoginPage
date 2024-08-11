@@ -22,6 +22,7 @@ class ViewController: UIViewController {
         loadRegisterMessage()
         loadEmailTitle()
         loadPasswordTitle()
+        loadLoginOptionsTitle()
     }
     
     private func loadAppLogo() {
@@ -135,6 +136,25 @@ class ViewController: UIViewController {
             title.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 388),
             title.widthAnchor.constraint(equalToConstant: 65),
             title.heightAnchor.constraint(equalToConstant: 20),
+            
+        ] )
+    }
+    
+    private func loadLoginOptionsTitle() {
+        
+        let title = UILabel()
+        
+        title.translatesAutoresizingMaskIntoConstraints = false
+        title.text = "or continue with"
+        title.font = UIFont(name: "Poppins-Medium", size: 16)
+        title.textColor = UIColor(red: 181 / 255, green: 181 / 255, blue: 181 / 255, alpha: 1.0)
+        
+        self.view.addSubview(title)
+
+        NSLayoutConstraint.activate( [
+            
+            title.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            title.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 642),
             
         ] )
     }
