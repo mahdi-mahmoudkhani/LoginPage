@@ -164,15 +164,19 @@ class ViewController: UIViewController {
         
         let appleLogo = UIButton()
         let facebookLogo = UIButton()
+        let googleLogo = UIButton()
         
         appleLogo.translatesAutoresizingMaskIntoConstraints = false
         facebookLogo.translatesAutoresizingMaskIntoConstraints = false
+        googleLogo.translatesAutoresizingMaskIntoConstraints = false
         
         appleLogo.setImage(UIImage(named: "apple"), for: .normal)
         facebookLogo.setImage(UIImage(named: "Facebook"), for: .normal)
+        googleLogo.setImage(UIImage(named: "google"), for: .normal)
         
         self.view.addSubview(appleLogo)
         self.view.addSubview(facebookLogo)
+        self.view.addSubview(googleLogo)
         
         NSLayoutConstraint.activate( [
             
@@ -180,7 +184,10 @@ class ViewController: UIViewController {
             appleLogo.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 691),
             
             facebookLogo.rightAnchor.constraint(equalTo: appleLogo.leftAnchor, constant: -17),
-            facebookLogo.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 691)
+            facebookLogo.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 691),
+            
+            googleLogo.leftAnchor.constraint(equalTo: appleLogo.rightAnchor, constant: 17),
+            googleLogo.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 691)
             
         ] )
     }
