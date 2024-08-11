@@ -20,6 +20,7 @@ class ViewController: UIViewController {
         loadAppLogo()
         loadSignInTitle()
         loadRegisterMessage()
+        loadEmailTitle()
     }
     
     private func loadAppLogo() {
@@ -93,6 +94,26 @@ class ViewController: UIViewController {
             registerMessageL2.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 28.48),
             registerMessageL2.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 199),
             registerMessageL2.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -31),
+            
+        ] )
+    }
+    
+    private func loadEmailTitle() {
+        
+        let title = UILabel()
+        
+        title.translatesAutoresizingMaskIntoConstraints = false
+        title.text = "Email"
+        title.font = UIFont(name: "Poppins-Medium", size: 13)
+        
+        self.view.addSubview(title)
+        
+        NSLayoutConstraint.activate( [
+            
+            title.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 28.48),
+            title.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 275),
+            title.widthAnchor.constraint(equalToConstant: 36),
+            title.heightAnchor.constraint(equalToConstant: 20),
             
         ] )
     }
