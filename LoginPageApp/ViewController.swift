@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     private func loadItems() {
         
         loadAppLogo()
+        loadSignInTitle()
     }
     
     private func loadAppLogo() {
@@ -39,6 +40,26 @@ class ViewController: UIViewController {
             
         ] )
         
+    }
+    
+    private func loadSignInTitle() {
+        
+        let SignInTitle = UILabel()
+        
+        SignInTitle.translatesAutoresizingMaskIntoConstraints = false
+        SignInTitle.text = "Sign in"
+        SignInTitle.font = UIFont(name: "Poppins-Medium", size: 30)
+        
+        self.view.addSubview(SignInTitle)
+
+        NSLayoutConstraint.activate( [
+            
+            SignInTitle.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 28),
+            SignInTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 102),
+            SignInTitle.widthAnchor.constraint(equalToConstant: 128),
+            SignInTitle.heightAnchor.constraint(equalToConstant: 45),
+            
+        ] )
     }
 }
 
