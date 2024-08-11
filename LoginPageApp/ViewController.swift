@@ -163,16 +163,24 @@ class ViewController: UIViewController {
     private func loadLoginOptionsLogos() {
         
         let appleLogo = UIButton()
+        let facebookLogo = UIButton()
         
         appleLogo.translatesAutoresizingMaskIntoConstraints = false
+        facebookLogo.translatesAutoresizingMaskIntoConstraints = false
+        
         appleLogo.setImage(UIImage(named: "apple"), for: .normal)
+        facebookLogo.setImage(UIImage(named: "Facebook"), for: .normal)
         
         self.view.addSubview(appleLogo)
+        self.view.addSubview(facebookLogo)
         
         NSLayoutConstraint.activate( [
             
             appleLogo.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            appleLogo.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 691)
+            appleLogo.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 691),
+            
+            facebookLogo.rightAnchor.constraint(equalTo: appleLogo.leftAnchor, constant: -17),
+            facebookLogo.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 691)
             
         ] )
     }
