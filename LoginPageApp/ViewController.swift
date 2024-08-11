@@ -22,6 +22,7 @@ class ViewController: UIViewController {
         loadRegisterMessage()
         loadEmailTitle()
         loadPasswordTitle()
+        loadLoginButton()
         loadLoginOptionsTitle()
         loadLoginOptionsLogos()
     }
@@ -137,6 +138,28 @@ class ViewController: UIViewController {
             title.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 388),
             title.widthAnchor.constraint(equalToConstant: 65),
             title.heightAnchor.constraint(equalToConstant: 20),
+            
+        ] )
+    }
+    
+    private func loadLoginButton() {
+        
+        let button = UIButton()
+        
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.configuration = .filled()
+        button.configuration?.title = "Login"
+        button.configuration?.baseBackgroundColor = UIColor(red: 1, green: 67 / 255, blue: 42 / 255, alpha: 1)
+        button.configuration?.baseForegroundColor = UIColor.white
+        button.configuration?.background.cornerRadius = 32.0
+        
+        self.view.addSubview(button)
+        
+        NSLayoutConstraint.activate( [
+        
+            button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            button.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 547),
+            button.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 28.48)
             
         ] )
     }
