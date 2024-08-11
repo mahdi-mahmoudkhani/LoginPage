@@ -21,6 +21,7 @@ class ViewController: UIViewController {
         loadSignInTitle()
         loadRegisterMessage()
         loadEmailTitle()
+        loadPasswordTitle()
     }
     
     private func loadAppLogo() {
@@ -113,6 +114,26 @@ class ViewController: UIViewController {
             title.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 28.48),
             title.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 275),
             title.widthAnchor.constraint(equalToConstant: 36),
+            title.heightAnchor.constraint(equalToConstant: 20),
+            
+        ] )
+    }
+    
+    private func loadPasswordTitle() {
+        
+        let title = UILabel()
+        
+        title.translatesAutoresizingMaskIntoConstraints = false
+        title.text = "Password"
+        title.font = UIFont(name: "Poppins-Medium", size: 13)
+        
+        self.view.addSubview(title)
+        
+        NSLayoutConstraint.activate( [
+            
+            title.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 28.48),
+            title.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 388),
+            title.widthAnchor.constraint(equalToConstant: 65),
             title.heightAnchor.constraint(equalToConstant: 20),
             
         ] )
