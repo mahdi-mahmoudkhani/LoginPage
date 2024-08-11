@@ -22,6 +22,7 @@ class ViewController: UIViewController {
         loadRegisterMessage()
         loadEmailTitle()
         loadPasswordTitle()
+        loadForgotPassword()
         loadLoginButton()
         loadLoginOptionsTitle()
         loadLoginOptionsLogos()
@@ -140,6 +141,26 @@ class ViewController: UIViewController {
             title.heightAnchor.constraint(equalToConstant: 20),
             
         ] )
+    }
+    
+    private func loadForgotPassword() {
+        
+        let button = UIButton()
+        
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Forgot Password ?", for: .normal)
+        button.setTitleColor(UIColor(red: 77 / 256, green: 77 / 256, blue: 77 / 256, alpha: 1), for: .normal)
+        button.titleLabel?.font = UIFont(name: "Poppins-Light", size: 12)
+        
+        self.view.addSubview(button)
+        
+        NSLayoutConstraint.activate( [
+        
+            button.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 469),
+            button.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -28)
+        
+        ] )
+        
     }
     
     private func loadLoginButton() {
