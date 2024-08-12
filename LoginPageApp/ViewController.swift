@@ -136,7 +136,11 @@ class ViewController: UIViewController {
             NSAttributedString.Key.font : UIFont(name: "Poppins-Regular", size: 16.0) as Any ] )
         emailField.leftView = UIImageView(image: UIImage(named: "message"))
         emailField.leftViewMode = .always
-        
+        emailField.textContentType = .emailAddress
+        emailField.keyboardType = .emailAddress
+        emailField.returnKeyType = .done
+        emailField.enablesReturnKeyAutomatically = true
+    
         // MARK: FIXME
         
         self.view.addSubview(emailField)
@@ -194,6 +198,11 @@ class ViewController: UIViewController {
         
         passField.leftViewMode = .always
         passField.rightViewMode = .always
+        
+        passField.textContentType = .emailAddress
+        passField.keyboardType = .emailAddress
+        passField.returnKeyType = .done
+        passField.enablesReturnKeyAutomatically = true
         
         // MARK: FIXME
         
