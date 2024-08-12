@@ -8,7 +8,10 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    let passIsVisible = UIButton()
+    let passField = UITextField()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -191,15 +194,17 @@ class ViewController: UIViewController {
     
     private func loadPsswordField() {
         
-        let passField = UITextField()
-        
         passField.translatesAutoresizingMaskIntoConstraints = false
         passField.attributedPlaceholder = NSAttributedString(string: "Enter your Password", attributes: [
             NSAttributedString.Key.foregroundColor: UIColor.black,
             NSAttributedString.Key.font : UIFont(name: "Poppins-Regular", size: 13.0) as Any ] )
         passField.leftView = UIImageView(image: UIImage(named: "padlock"))
-        passField.rightView = UIImageView(image: UIImage(named: "invisible"))
-        
+    
+        passIsVisible.setImage(UIImage(named: "invisible"), for: .normal)
+        passIsVisible.setImage(UIImage(named: "eye-fill"), for: .highlighted)
+        passIsVisible.addTarget(self, action: #selector(changePassVisibility), for: [.touchDown, .touchUpInside])
+        passField.rightView = passIsVisible
+
         passField.leftViewMode = .always
         passField.rightViewMode = .always
         
@@ -207,6 +212,7 @@ class ViewController: UIViewController {
         passField.keyboardType = .emailAddress
         passField.returnKeyType = .done
         passField.enablesReturnKeyAutomatically = true
+        passField.isSecureTextEntry = true
         
         passField.addTarget(self, action: #selector(UIViewController.dismissKeyboardTouchOutside), for: .editingDidEndOnExit)
         
@@ -356,6 +362,11 @@ class ViewController: UIViewController {
             googleLogo.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 691)
             
         ] )
+    }
+    
+    @objc func changePassVisibility() {
+        
+        passField.isSecureTextEntry = !passField.isSecureTextEntry
     }
 }
 
