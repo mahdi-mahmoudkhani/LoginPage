@@ -155,8 +155,8 @@ class ViewController: UIViewController {
         
         let bottomLine = CALayer()
         
-        bottomLine.frame = CGRect(x: 0, y: emailField.frame.height + 7 , width: emailField.frame.width , height: 3)
-        bottomLine.backgroundColor = UIColor.red.cgColor
+        bottomLine.frame = CGRect(x: 0, y: emailField.frame.height + 7 , width: emailField.frame.width , height: 2)
+        bottomLine.backgroundColor = UIColor(red: 1, green: 67 / 255, blue: 42 / 255, alpha: 1).cgColor
         emailField.layer.addSublayer(bottomLine)
         
     }
