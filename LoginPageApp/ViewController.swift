@@ -21,6 +21,7 @@ class ViewController: UIViewController {
         loadSignInTitle()
         loadRegisterMessage()
         loadEmailTitle()
+        loadEmailField()
         loadPasswordTitle()
         loadRememberMe()
         loadForgotPassword()
@@ -124,6 +125,31 @@ class ViewController: UIViewController {
         ] )
     }
     
+    private func loadEmailField() {
+
+        let emailField = UITextField()
+        
+        emailField.translatesAutoresizingMaskIntoConstraints = false
+        emailField.attributedPlaceholder = NSAttributedString(string: "Enter your email address", attributes: [
+            NSAttributedString.Key.foregroundColor: UIColor.black,
+            NSAttributedString.Key.font : UIFont(name: "Poppins-Regular", size: 16.0) as Any ] )
+        emailField.leftView = UIImageView(image: UIImage(named: "message"))
+        emailField.leftViewMode = .always
+        
+        // MARK: FIXME
+        
+        self.view.addSubview(emailField)
+        
+        NSLayoutConstraint.activate( [
+        
+            emailField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 28),
+            emailField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emailField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 306)
+
+        ] )
+        
+    }
+    
     private func loadPasswordTitle() {
         
         let title = UILabel()
@@ -175,6 +201,7 @@ class ViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Forgot Password ?", for: .normal)
         button.setTitleColor(UIColor(red: 77 / 256, green: 77 / 256, blue: 77 / 256, alpha: 1), for: .normal)
+        button.setTitleColor(.gray, for: .highlighted)
         button.titleLabel?.font = UIFont(name: "Poppins-Light", size: 12)
         
         self.view.addSubview(button)
