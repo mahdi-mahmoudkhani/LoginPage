@@ -173,6 +173,13 @@ class ViewController: UIViewController {
         button.configuration?.baseBackgroundColor = UIColor(red: 1, green: 67 / 255, blue: 42 / 255, alpha: 1)
         button.configuration?.baseForegroundColor = UIColor.white
         button.configuration?.background.cornerRadius = 32.0
+        button.configuration?.attributedTitle = AttributedString("Login")
+        button.configuration?.attributedTitle?.font = UIFont(name: "Poppins-Medium", size: 17.0)
+        
+        button.layer.shadowOffset = CGSize(width: 0.0, height: 4.0)
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.25
+        button.layer.shadowRadius = 26
         
         self.view.addSubview(button)
         
@@ -180,7 +187,8 @@ class ViewController: UIViewController {
         
             button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             button.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 547),
-            button.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 28.48)
+            button.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 28.48),
+            button.heightAnchor.constraint(equalToConstant: 53.0)
             
         ] )
     }
