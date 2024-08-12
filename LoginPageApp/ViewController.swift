@@ -11,6 +11,7 @@ class ViewController: UIViewController {
     
     let passIsVisible = UIButton()
     let passField = UITextField()
+    let rememberMeButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -240,23 +241,23 @@ class ViewController: UIViewController {
     
     private func loadRememberMe() {
         
-        let labeledButton = UIButton()
+        rememberMeButton.translatesAutoresizingMaskIntoConstraints = false
+        rememberMeButton.configuration = .plain()
+        rememberMeButton.configuration?.image = UIImage(named: "Rectangle")
+        rememberMeButton.configuration?.imagePadding = 6.0
+        rememberMeButton.configuration?.attributedTitle = AttributedString("Remember me")
+        rememberMeButton.configuration?.attributedTitle?.font = UIFont(name: "Poppins-Light", size: 12)
+        rememberMeButton.configuration?.baseBackgroundColor = UIColor.systemBackground
+        rememberMeButton.configuration?.baseForegroundColor = UIColor.black
+        rememberMeButton.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 6.0, leading: 0.0, bottom: 0.0, trailing: 0.0)
+        rememberMeButton.addTarget(self, action: #selector(changeRememberCheckBox), for: .touchUpInside)
         
-        labeledButton.translatesAutoresizingMaskIntoConstraints = false
-        labeledButton.configuration = .plain()
-        labeledButton.configuration?.image = UIImage(named: "Rectangle")
-        labeledButton.configuration?.imagePadding = 6.0
-        labeledButton.configuration?.attributedTitle = AttributedString("Remember me")
-        labeledButton.configuration?.attributedTitle?.font = UIFont(name: "Poppins-Light", size: 12)
-        labeledButton.configuration?.attributedTitle?.foregroundColor = UIColor.black
-        labeledButton.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 6.0, leading: 0.0, bottom: 0.0, trailing: 0.0)
-        
-        self.view.addSubview(labeledButton)
+        self.view.addSubview(rememberMeButton)
         
         NSLayoutConstraint.activate( [
         
-            labeledButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 469),
-            labeledButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 29)
+            rememberMeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 469),
+            rememberMeButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 29)
             
         ] )
         
@@ -367,6 +368,19 @@ class ViewController: UIViewController {
     @objc func changePassVisibility() {
         
         passField.isSecureTextEntry = !passField.isSecureTextEntry
+    }
+    
+    @objc func changeRememberCheckBox() {
+        
+        rememberMeButton.isSelected.toggle()
+        
+        if !rememberMeButton.isSelected {
+            
+            rememberMeButton.configuration?.image = UIImage(named: "Rectangle")
+        } else {
+            
+            rememberMeButton.configuration?.image = UIImage(named: "checkbox-marked")
+        }
     }
 }
 
