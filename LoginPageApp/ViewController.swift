@@ -145,9 +145,19 @@ class ViewController: UIViewController {
         
             emailField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 28),
             emailField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            emailField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 306)
+            emailField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 306),
+            emailField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -28),
+            emailField.heightAnchor.constraint(equalToConstant: 24)
 
         ] )
+        
+        emailField.layoutIfNeeded()
+        
+        let bottomLine = CALayer()
+        
+        bottomLine.frame = CGRect(x: 0, y: emailField.frame.height + 7 , width: emailField.frame.width , height: 3)
+        bottomLine.backgroundColor = UIColor.red.cgColor
+        emailField.layer.addSublayer(bottomLine)
         
     }
     
