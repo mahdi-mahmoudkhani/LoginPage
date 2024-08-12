@@ -144,11 +144,19 @@ class ViewController: UIViewController {
     
     private func loadEmailField() {
 
+        let leftViewPadding = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: emailField.frame.height))
+        let messageImageView = UIImageView(image: UIImage(named: "message"))
+        
+        messageImageView.contentMode = .left
+        messageImageView.frame = CGRect(x: 0, y: 0, width: 20, height: emailField.frame.height)
+        leftViewPadding.addSubview(messageImageView)
+        
         emailField.translatesAutoresizingMaskIntoConstraints = false
         emailField.attributedPlaceholder = NSAttributedString(string: "Enter your email address", attributes: [
             NSAttributedString.Key.foregroundColor: UIColor.black,
             NSAttributedString.Key.font : UIFont(name: "Poppins-Regular", size: 16.0) as Any ] )
-        emailField.leftView = UIImageView(image: UIImage(named: "message"))
+        
+        emailField.leftView = leftViewPadding
         emailField.leftViewMode = .always
         emailField.textContentType = .emailAddress
         emailField.keyboardType = .emailAddress
