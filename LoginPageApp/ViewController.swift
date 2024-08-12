@@ -260,7 +260,7 @@ class ViewController: UIViewController {
         
         NSLayoutConstraint.activate( [
         
-            rememberMeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 469),
+            rememberMeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 463),
             rememberMeButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 29)
             
         ] )
@@ -281,7 +281,7 @@ class ViewController: UIViewController {
         
         NSLayoutConstraint.activate( [
         
-            button.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 469),
+            button.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 463),
             button.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -28)
         
         ] )
