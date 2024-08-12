@@ -11,8 +11,10 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view.
         loadItems()
+        self.dismissKeyboard()
     }
     
     private func loadItems() {
@@ -140,7 +142,9 @@ class ViewController: UIViewController {
         emailField.keyboardType = .emailAddress
         emailField.returnKeyType = .done
         emailField.enablesReturnKeyAutomatically = true
-    
+
+        emailField.addTarget(self, action: #selector(UIViewController.dismissKeyboardTouchOutside), for: .editingDidEndOnExit)
+        
         // MARK: FIXME
         
         self.view.addSubview(emailField)
@@ -203,6 +207,8 @@ class ViewController: UIViewController {
         passField.keyboardType = .emailAddress
         passField.returnKeyType = .done
         passField.enablesReturnKeyAutomatically = true
+        
+        passField.addTarget(self, action: #selector(UIViewController.dismissKeyboardTouchOutside), for: .editingDidEndOnExit)
         
         // MARK: FIXME
         
@@ -353,3 +359,15 @@ class ViewController: UIViewController {
     }
 }
 
+extension UIViewController {
+    
+    func dismissKeyboard() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer( target: self, action:    #selector(UIViewController.dismissKeyboardTouchOutside))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboardTouchOutside() {
+        view.endEditing(true)
+    }
+}
