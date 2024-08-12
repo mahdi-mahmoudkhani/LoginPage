@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     let rememberMeButton = UIButton()
     let emailBottomLine = CALayer()
     let emailField = UITextField()
+    let passBottomLine = CALayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -148,7 +149,7 @@ class ViewController: UIViewController {
         emailField.enablesReturnKeyAutomatically = true
 
         emailField.addTarget(self, action: #selector(UIViewController.dismissKeyboardTouchOutside), for: .editingDidEndOnExit)
-        emailField.addTarget(self, action: #selector(changeButtomLineColor), for: .allEvents)
+        emailField.addTarget(self, action: #selector(changePassButtomLineColor), for: .allEvents)
         
         // MARK: FIXME
         
@@ -215,6 +216,7 @@ class ViewController: UIViewController {
         passField.isSecureTextEntry = true
         
         passField.addTarget(self, action: #selector(UIViewController.dismissKeyboardTouchOutside), for: .editingDidEndOnExit)
+        passField.addTarget(self, action: #selector(changePassButtomLineColor), for: .allEvents)
         
         // MARK: FIXME
         
@@ -231,11 +233,9 @@ class ViewController: UIViewController {
         
         passField.layoutIfNeeded()
         
-        let bottomLine = CALayer()
-        
-        bottomLine.frame = CGRect(x: 0, y: passField.frame.height + 10 , width: passField.frame.width , height: 2)
-        bottomLine.backgroundColor = UIColor.black.cgColor
-        passField.layer.addSublayer(bottomLine)
+        passBottomLine.frame = CGRect(x: 0, y: passField.frame.height + 10 , width: passField.frame.width , height: 2)
+        passBottomLine.backgroundColor = UIColor.black.cgColor
+        passField.layer.addSublayer(passBottomLine)
     }
     
     private func loadRememberMe() {
@@ -382,7 +382,7 @@ class ViewController: UIViewController {
         }
     }
     
-    @objc func changeButtomLineColor() {
+    @objc func changeEmailButtomLineColor() {
         
         if self.emailField.isEditing {
             
@@ -390,6 +390,17 @@ class ViewController: UIViewController {
         } else {
             
             emailBottomLine.backgroundColor = UIColor.black.cgColor
+        }
+    }
+    
+    @objc func changePassButtomLineColor() {
+        
+        if self.passField.isEditing {
+            
+            passBottomLine.backgroundColor = UIColor(red: 1, green: 67 / 255, blue: 42 / 255, alpha: 1).cgColor
+        } else {
+            
+            passBottomLine.backgroundColor = UIColor.black.cgColor
         }
     }
 }
