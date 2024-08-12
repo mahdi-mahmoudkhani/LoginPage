@@ -203,9 +203,18 @@ class ViewController: UIViewController {
         
             passField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 27),
             passField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            passField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 420)
+            passField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 420),
+            passField.widthAnchor.constraint(equalToConstant: 20)
 
         ] )
+        
+        passField.layoutIfNeeded()
+        
+        let bottomLine = CALayer()
+        
+        bottomLine.frame = CGRect(x: 0, y: passField.frame.height + 10 , width: passField.frame.width , height: 2)
+        bottomLine.backgroundColor = UIColor.black.cgColor
+        passField.layer.addSublayer(bottomLine)
     }
     
     private func loadRememberMe() {
