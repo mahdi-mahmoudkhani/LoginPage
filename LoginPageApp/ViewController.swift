@@ -23,6 +23,7 @@ class ViewController: UIViewController {
         loadEmailTitle()
         loadEmailField()
         loadPasswordTitle()
+        loadPsswordField()
         loadRememberMe()
         loadForgotPassword()
         loadLoginButton()
@@ -167,6 +168,33 @@ class ViewController: UIViewController {
             title.widthAnchor.constraint(equalToConstant: 65),
             title.heightAnchor.constraint(equalToConstant: 20),
             
+        ] )
+    }
+    
+    private func loadPsswordField() {
+        
+        let passField = UITextField()
+        
+        passField.translatesAutoresizingMaskIntoConstraints = false
+        passField.attributedPlaceholder = NSAttributedString(string: "Enter your Password", attributes: [
+            NSAttributedString.Key.foregroundColor: UIColor.black,
+            NSAttributedString.Key.font : UIFont(name: "Poppins-Regular", size: 13.0) as Any ] )
+        passField.leftView = UIImageView(image: UIImage(named: "padlock"))
+        passField.rightView = UIImageView(image: UIImage(named: "invisible"))
+        
+        passField.leftViewMode = .always
+        passField.rightViewMode = .always
+        
+        // MARK: FIXME
+        
+        self.view.addSubview(passField)
+        
+        NSLayoutConstraint.activate( [
+        
+            passField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 27),
+            passField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            passField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 420)
+
         ] )
     }
     
