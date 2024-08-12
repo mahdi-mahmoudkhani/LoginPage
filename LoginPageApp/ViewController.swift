@@ -85,22 +85,26 @@ class ViewController: UIViewController {
         
         let registerMessageL1 = UILabel()
         let registerMessageL2 = UILabel()
-        let stringText = "You can   Register here !"
-        let attributedString = NSMutableAttributedString(string: stringText)
-        let registerWordRange = (stringText as NSString).range(of: "Register here !")
+        let registerButton = UIButton()
         
         registerMessageL1.translatesAutoresizingMaskIntoConstraints = false
         registerMessageL2.translatesAutoresizingMaskIntoConstraints = false
+        registerButton.translatesAutoresizingMaskIntoConstraints = false
         
         registerMessageL1.text = "If you don’t have an account register"
         registerMessageL1.font = UIFont(name: "Poppins-Regular", size: 16)
         
-        attributedString.addAttribute(.foregroundColor, value: UIColor(red: 255 / 255, green: 67 / 255, blue: 42 / 255, alpha: 1.0), range: registerWordRange)
-        attributedString.addAttribute(.font, value: UIFont(name: "Poppins-SemiBold", size: 16)!, range: registerWordRange)
-        registerMessageL2.attributedText = attributedString
+        registerMessageL2.text = "You can"
+        registerMessageL2.font = UIFont(name: "Poppins-Regular", size: 16)
+        
+        registerButton.setTitle("Register here !", for: .normal)
+        registerButton.setTitleColor(UIColor(red: 1, green: 67 / 255, blue: 42 / 255, alpha: 1), for: .normal)
+        registerButton.titleLabel?.font = UIFont(name: "Poppins-SemiBold", size: 16)
+        registerButton.setTitleColor(UIColor.gray, for: .highlighted)
         
         self.view.addSubview(registerMessageL1)
         self.view.addSubview(registerMessageL2)
+        self.view.addSubview(registerButton)
         
         NSLayoutConstraint.activate( [
             
@@ -111,6 +115,9 @@ class ViewController: UIViewController {
             registerMessageL2.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 28.48),
             registerMessageL2.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 199),
             registerMessageL2.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -31),
+            
+            registerButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 107),
+            registerButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 193)
             
         ] )
     }
