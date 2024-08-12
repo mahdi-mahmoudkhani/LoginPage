@@ -164,7 +164,7 @@ class ViewController: UIViewController {
         emailField.enablesReturnKeyAutomatically = true
 
         emailField.addTarget(self, action: #selector(UIViewController.dismissKeyboardTouchOutside), for: .editingDidEndOnExit)
-        emailField.addTarget(self, action: #selector(changePassButtomLineColor), for: .allEvents)
+        emailField.addTarget(self, action: #selector(changeEmailButtomLineColor), for: .allEvents)
         
         // MARK: FIXME
         
@@ -210,11 +210,18 @@ class ViewController: UIViewController {
     
     private func loadPsswordField() {
         
+        let leftViewFrame = UIView(frame: CGRect(x: 0, y: 0, width: 27, height: passField.frame.height))
+        let leftViewImage = UIImageView(image: UIImage(named: "padlock"))
+        
+        leftViewImage.contentMode = .left
+        leftViewImage.frame = CGRect(x: 0, y: 0, width: 20, height: passField.frame.height)
+        leftViewFrame.addSubview(leftViewImage)
+        
         passField.translatesAutoresizingMaskIntoConstraints = false
         passField.attributedPlaceholder = NSAttributedString(string: "Enter your Password", attributes: [
             NSAttributedString.Key.foregroundColor: UIColor.black,
             NSAttributedString.Key.font : UIFont(name: "Poppins-Regular", size: 13.0) as Any ] )
-        passField.leftView = UIImageView(image: UIImage(named: "padlock"))
+        passField.leftView = leftViewFrame
     
         passIsVisible.setImage(UIImage(named: "invisible"), for: .normal)
         passIsVisible.setImage(UIImage(named: "eye-fill"), for: .highlighted)
