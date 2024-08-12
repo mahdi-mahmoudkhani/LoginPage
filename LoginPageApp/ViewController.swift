@@ -22,6 +22,7 @@ class ViewController: UIViewController {
         loadRegisterMessage()
         loadEmailTitle()
         loadPasswordTitle()
+        loadRememberMe()
         loadForgotPassword()
         loadLoginButton()
         loadLoginOptionsTitle()
@@ -141,6 +142,30 @@ class ViewController: UIViewController {
             title.heightAnchor.constraint(equalToConstant: 20),
             
         ] )
+    }
+    
+    private func loadRememberMe() {
+        
+        let labeledButton = UIButton()
+        
+        labeledButton.translatesAutoresizingMaskIntoConstraints = false
+        labeledButton.configuration = .plain()
+        labeledButton.configuration?.image = UIImage(named: "Rectangle")
+        labeledButton.configuration?.imagePadding = 6.0
+        labeledButton.configuration?.attributedTitle = AttributedString("Remember me")
+        labeledButton.configuration?.attributedTitle?.font = UIFont(name: "Poppins-Light", size: 12)
+        labeledButton.configuration?.attributedTitle?.foregroundColor = UIColor.black
+        labeledButton.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 6.0, leading: 0.0, bottom: 0.0, trailing: 0.0)
+        
+        self.view.addSubview(labeledButton)
+        
+        NSLayoutConstraint.activate( [
+        
+            labeledButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 469),
+            labeledButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 29)
+            
+        ] )
+        
     }
     
     private func loadForgotPassword() {
