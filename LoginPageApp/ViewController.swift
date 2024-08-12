@@ -209,8 +209,6 @@ class ViewController: UIViewController {
         passField.leftViewMode = .always
         passField.rightViewMode = .always
         
-        passField.textContentType = .emailAddress
-        passField.keyboardType = .emailAddress
         passField.returnKeyType = .done
         passField.enablesReturnKeyAutomatically = true
         passField.isSecureTextEntry = true
