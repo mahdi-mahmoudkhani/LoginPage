@@ -12,6 +12,8 @@ class ViewController: UIViewController {
     let passIsVisible = UIButton()
     let passField = UITextField()
     let rememberMeButton = UIButton()
+    let emailBottomLine = CALayer()
+    let emailField = UITextField()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -134,8 +136,6 @@ class ViewController: UIViewController {
     
     private func loadEmailField() {
 
-        let emailField = UITextField()
-        
         emailField.translatesAutoresizingMaskIntoConstraints = false
         emailField.attributedPlaceholder = NSAttributedString(string: "Enter your email address", attributes: [
             NSAttributedString.Key.foregroundColor: UIColor.black,
@@ -148,6 +148,7 @@ class ViewController: UIViewController {
         emailField.enablesReturnKeyAutomatically = true
 
         emailField.addTarget(self, action: #selector(UIViewController.dismissKeyboardTouchOutside), for: .editingDidEndOnExit)
+        emailField.addTarget(self, action: #selector(changeButtomLineColor), for: .allEvents)
         
         // MARK: FIXME
         
@@ -165,11 +166,9 @@ class ViewController: UIViewController {
         
         emailField.layoutIfNeeded()
         
-        let bottomLine = CALayer()
-        
-        bottomLine.frame = CGRect(x: 0, y: emailField.frame.height + 7 , width: emailField.frame.width , height: 2)
-        bottomLine.backgroundColor = UIColor(red: 1, green: 67 / 255, blue: 42 / 255, alpha: 1).cgColor
-        emailField.layer.addSublayer(bottomLine)
+        emailBottomLine.frame = CGRect(x: 0, y: emailField.frame.height + 7 , width: emailField.frame.width , height: 2)
+        emailBottomLine.backgroundColor = UIColor.black.cgColor
+        emailField.layer.addSublayer(emailBottomLine)
         
     }
     
@@ -380,6 +379,17 @@ class ViewController: UIViewController {
         } else {
             
             rememberMeButton.configuration?.image = UIImage(named: "checkbox-marked")
+        }
+    }
+    
+    @objc func changeButtomLineColor() {
+        
+        if self.emailField.isEditing {
+            
+            emailBottomLine.backgroundColor = UIColor(red: 1, green: 67 / 255, blue: 42 / 255, alpha: 1).cgColor
+        } else {
+            
+            emailBottomLine.backgroundColor = UIColor.black.cgColor
         }
     }
 }
