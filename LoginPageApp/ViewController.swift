@@ -240,7 +240,7 @@ class ViewController: UIViewController {
         
         passField.addTarget(self, action: #selector(UIViewController.dismissKeyboardTouchOutside), for: .editingDidEndOnExit)
         passField.addTarget(self, action: #selector(changePassButtomLineColor), for: .allEvents)
-        passField.addTarget(self, action: #selector(checkPass), for: .allEvents)
+        passField.addTarget(self, action: #selector(checkPass), for: .allEditingEvents)
         
         self.view.addSubview(passField)
         
@@ -401,7 +401,7 @@ class ViewController: UIViewController {
         eightCharMessage.configuration?.imagePadding = 5.0
         eightCharMessage.configuration?.attributedTitle = AttributedString("at least 8 characters")
         eightCharMessage.configuration?.attributedTitle?.font = font
-        eightCharMessage.tintColor = .gray
+        eightCharMessage.tintColor = .systemRed
         eightCharMessage.isUserInteractionEnabled = false
         
         specialCharMessage.translatesAutoresizingMaskIntoConstraints = false
@@ -412,7 +412,7 @@ class ViewController: UIViewController {
         specialCharMessage.configuration?.imagePadding = 5.0
         specialCharMessage.configuration?.attributedTitle = AttributedString("at least one special character")
         specialCharMessage.configuration?.attributedTitle?.font = font
-        specialCharMessage.tintColor = .gray
+        specialCharMessage.tintColor = .systemRed
         specialCharMessage.isUserInteractionEnabled = false
         
         upperCharMessage.translatesAutoresizingMaskIntoConstraints = false
@@ -423,8 +423,12 @@ class ViewController: UIViewController {
         upperCharMessage.configuration?.imagePadding = 5.0
         upperCharMessage.configuration?.attributedTitle = AttributedString("at least one uppercase character")
         upperCharMessage.configuration?.attributedTitle?.font = font
-        upperCharMessage.tintColor = .gray
+        upperCharMessage.tintColor = .systemRed
         upperCharMessage.isUserInteractionEnabled = false
+        
+        eightCharMessage.isHidden = true
+        specialCharMessage.isHidden = true
+        upperCharMessage.isHidden = true
         
         self.view.addSubview(eightCharMessage)
         self.view.addSubview(specialCharMessage)
@@ -488,12 +492,25 @@ class ViewController: UIViewController {
         
         let pass = passField.text!
         
+        if pass != "" {
+            
+            eightCharMessage.isHidden = false
+            specialCharMessage.isHidden = false
+            upperCharMessage.isHidden = false
+            
+        } else {
+            
+            eightCharMessage.isHidden = true
+            specialCharMessage.isHidden = true
+            upperCharMessage.isHidden = true
+        }
+        
         if pass.count >= 8 {
             
             eightCharMessage.tintColor = .systemGreen
         } else {
             
-            eightCharMessage.tintColor = .gray }
+            eightCharMessage.tintColor = .systemRed }
         
         let hasSpecialCharacters = pass.range(of: ".*[^A-Za-z0-9].*", options: .regularExpression) != nil
         if hasSpecialCharacters { 
@@ -501,7 +518,7 @@ class ViewController: UIViewController {
             specialCharMessage.tintColor = .systemGreen
         } else {
             
-            specialCharMessage.tintColor = .gray }
+            specialCharMessage.tintColor = .systemRed }
         
         let hasUpperCharacters = pass.range(of: ".*[A-Z].*", options: .regularExpression) != nil
         if hasUpperCharacters {
@@ -509,7 +526,7 @@ class ViewController: UIViewController {
             upperCharMessage.tintColor = .systemGreen
         } else {
             
-            upperCharMessage.tintColor = .gray
+            upperCharMessage.tintColor = .systemRed
         }
         
     }
