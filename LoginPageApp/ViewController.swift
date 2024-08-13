@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     
     let eightCharMessage = UIButton()
     let specialCharMessage = UIButton()
+    let upperCharMessage = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -417,9 +418,20 @@ class ViewController: UIViewController {
         specialCharMessage.tintColor = .gray
         specialCharMessage.isUserInteractionEnabled = false
         
+        upperCharMessage.translatesAutoresizingMaskIntoConstraints = false
+        
+        upperCharMessage.configuration = .plain()
+        upperCharMessage.configuration?.image = checkMarkImage
+        upperCharMessage.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 0.0, leading: 0.0, bottom: 0.0, trailing: 0.0)
+        upperCharMessage.configuration?.imagePadding = 5.0
+        upperCharMessage.configuration?.attributedTitle = AttributedString("at least one uppercase character")
+        upperCharMessage.configuration?.attributedTitle?.font = font
+        upperCharMessage.tintColor = .gray
+        upperCharMessage.isUserInteractionEnabled = false
         
         self.view.addSubview(eightCharMessage)
         self.view.addSubview(specialCharMessage)
+        self.view.addSubview(upperCharMessage)
         
         NSLayoutConstraint.activate( [
         
@@ -427,7 +439,10 @@ class ViewController: UIViewController {
             eightCharMessage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 27.3),
             
             specialCharMessage.topAnchor.constraint(equalTo: eightCharMessage.bottomAnchor, constant: -5),
-            specialCharMessage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 27.3)
+            specialCharMessage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 27.3),
+            
+            upperCharMessage.topAnchor.constraint(equalTo: specialCharMessage.bottomAnchor, constant: -5),
+            upperCharMessage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 27.3)
             
         ] )
     }
