@@ -16,6 +16,8 @@ class ViewController: UIViewController {
     let emailField = UITextField()
     let passBottomLine = CALayer()
     
+    let eightCharMessage = UIButton()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,6 +40,7 @@ class ViewController: UIViewController {
         loadLoginButton()
         loadLoginOptionsTitle()
         loadLoginOptionsLogos()
+        loadPassValidationMessage()
     }
     
     private func loadAppLogo() {
@@ -380,6 +383,35 @@ class ViewController: UIViewController {
             
             googleLogo.leftAnchor.constraint(equalTo: appleLogo.rightAnchor, constant: 17),
             googleLogo.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 691)
+            
+        ] )
+    }
+    
+    private func loadPassValidationMessage() {
+        
+        let checkMarkImage = UIImage(systemName: "checkmark.rectangle.fill")?
+            .withConfiguration(UIImage.SymbolConfiguration(scale: .small))
+        
+        let font = UIFont(name: "Poppins-SemiBold", size: 10)
+        
+        eightCharMessage.translatesAutoresizingMaskIntoConstraints = false
+        
+        eightCharMessage.configuration = .plain()
+        eightCharMessage.configuration?.image = checkMarkImage
+        eightCharMessage.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 0.0, leading: 0.0, bottom: 0.0, trailing: 0.0)
+        eightCharMessage.configuration?.imagePadding = 5.0
+        eightCharMessage.configuration?.attributedTitle = AttributedString("at least 8 characters")
+        eightCharMessage.configuration?.attributedTitle?.font = font
+        eightCharMessage.tintColor = .gray
+        eightCharMessage.isUserInteractionEnabled = false
+        
+        
+        self.view.addSubview(eightCharMessage)
+        
+        NSLayoutConstraint.activate( [
+        
+            eightCharMessage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 490),
+            eightCharMessage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 27.3)
             
         ] )
     }
