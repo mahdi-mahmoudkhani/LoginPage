@@ -20,6 +20,12 @@ class ViewController: UIViewController {
     let specialCharMessage = UIButton()
     let upperCharMessage = UIButton()
     
+    let checkMarkImage = UIImage(systemName: "checkmark.rectangle.fill")?
+        .withConfiguration(UIImage.SymbolConfiguration(scale: .small))
+    
+    let xMarkImage = UIImage(systemName: "xmark.rectangle.fill")?
+        .withConfiguration(UIImage.SymbolConfiguration(scale: .small))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -388,15 +394,12 @@ class ViewController: UIViewController {
     
     private func loadPassValidationMessage() {
         
-        let checkMarkImage = UIImage(systemName: "checkmark.rectangle.fill")?
-            .withConfiguration(UIImage.SymbolConfiguration(scale: .small))
-        
         let font = UIFont(name: "Poppins-SemiBold", size: 10)
         
         eightCharMessage.translatesAutoresizingMaskIntoConstraints = false
         
         eightCharMessage.configuration = .plain()
-        eightCharMessage.configuration?.image = checkMarkImage
+        eightCharMessage.configuration?.image = xMarkImage
         eightCharMessage.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 0.0, leading: 0.0, bottom: 0.0, trailing: 0.0)
         eightCharMessage.configuration?.imagePadding = 5.0
         eightCharMessage.configuration?.attributedTitle = AttributedString("at least 8 characters")
@@ -407,7 +410,7 @@ class ViewController: UIViewController {
         specialCharMessage.translatesAutoresizingMaskIntoConstraints = false
         
         specialCharMessage.configuration = .plain()
-        specialCharMessage.configuration?.image = checkMarkImage
+        specialCharMessage.configuration?.image = xMarkImage
         specialCharMessage.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 0.0, leading: 0.0, bottom: 0.0, trailing: 0.0)
         specialCharMessage.configuration?.imagePadding = 5.0
         specialCharMessage.configuration?.attributedTitle = AttributedString("at least one special character")
@@ -418,7 +421,7 @@ class ViewController: UIViewController {
         upperCharMessage.translatesAutoresizingMaskIntoConstraints = false
         
         upperCharMessage.configuration = .plain()
-        upperCharMessage.configuration?.image = checkMarkImage
+        upperCharMessage.configuration?.image = xMarkImage
         upperCharMessage.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 0.0, leading: 0.0, bottom: 0.0, trailing: 0.0)
         upperCharMessage.configuration?.imagePadding = 5.0
         upperCharMessage.configuration?.attributedTitle = AttributedString("at least one uppercase character")
@@ -508,25 +511,35 @@ class ViewController: UIViewController {
         if pass.count >= 8 {
             
             eightCharMessage.tintColor = .systemGreen
+            eightCharMessage.configuration?.image = checkMarkImage
         } else {
             
-            eightCharMessage.tintColor = .systemRed }
+            eightCharMessage.tintColor = .systemRed
+            eightCharMessage.configuration?.image = xMarkImage
+        }
+            
         
         let hasSpecialCharacters = pass.range(of: ".*[^A-Za-z0-9].*", options: .regularExpression) != nil
         if hasSpecialCharacters { 
             
             specialCharMessage.tintColor = .systemGreen
+            specialCharMessage.configuration?.image = checkMarkImage
         } else {
             
-            specialCharMessage.tintColor = .systemRed }
+            specialCharMessage.tintColor = .systemRed
+            specialCharMessage.configuration?.image = xMarkImage
+            
+        }
         
         let hasUpperCharacters = pass.range(of: ".*[A-Z].*", options: .regularExpression) != nil
         if hasUpperCharacters {
             
             upperCharMessage.tintColor = .systemGreen
+            upperCharMessage.configuration?.image = checkMarkImage
         } else {
             
             upperCharMessage.tintColor = .systemRed
+            upperCharMessage.configuration?.image = xMarkImage
         }
         
     }
