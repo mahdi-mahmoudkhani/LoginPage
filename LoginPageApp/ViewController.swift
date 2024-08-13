@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     let passBottomLine = CALayer()
     
     let eightCharMessage = UIButton()
+    let specialCharMessage = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -405,13 +406,28 @@ class ViewController: UIViewController {
         eightCharMessage.tintColor = .gray
         eightCharMessage.isUserInteractionEnabled = false
         
+        specialCharMessage.translatesAutoresizingMaskIntoConstraints = false
+        
+        specialCharMessage.configuration = .plain()
+        specialCharMessage.configuration?.image = checkMarkImage
+        specialCharMessage.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 0.0, leading: 0.0, bottom: 0.0, trailing: 0.0)
+        specialCharMessage.configuration?.imagePadding = 5.0
+        specialCharMessage.configuration?.attributedTitle = AttributedString("at least one special character")
+        specialCharMessage.configuration?.attributedTitle?.font = font
+        specialCharMessage.tintColor = .gray
+        specialCharMessage.isUserInteractionEnabled = false
+        
         
         self.view.addSubview(eightCharMessage)
+        self.view.addSubview(specialCharMessage)
         
         NSLayoutConstraint.activate( [
         
             eightCharMessage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 490),
-            eightCharMessage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 27.3)
+            eightCharMessage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 27.3),
+            
+            specialCharMessage.topAnchor.constraint(equalTo: eightCharMessage.bottomAnchor, constant: -5),
+            specialCharMessage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 27.3)
             
         ] )
     }
