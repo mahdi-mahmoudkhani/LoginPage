@@ -171,8 +171,6 @@ class ViewController: UIViewController {
         emailField.addTarget(self, action: #selector(UIViewController.dismissKeyboardTouchOutside), for: .editingDidEndOnExit)
         emailField.addTarget(self, action: #selector(changeEmailButtomLineColor), for: .allEvents)
         
-        // MARK: FIXME
-        
         self.view.addSubview(emailField)
         
         NSLayoutConstraint.activate( [
@@ -242,8 +240,7 @@ class ViewController: UIViewController {
         
         passField.addTarget(self, action: #selector(UIViewController.dismissKeyboardTouchOutside), for: .editingDidEndOnExit)
         passField.addTarget(self, action: #selector(changePassButtomLineColor), for: .allEvents)
-        
-        // MARK: FIXME
+        passField.addTarget(self, action: #selector(checkPass), for: .allEvents)
         
         self.view.addSubview(passField)
         
@@ -485,6 +482,36 @@ class ViewController: UIViewController {
             
             passBottomLine.backgroundColor = UIColor.black.cgColor
         }
+    }
+    
+    @objc func checkPass() {
+        
+        let pass = passField.text!
+        
+        if pass.count >= 8 {
+            
+            eightCharMessage.tintColor = .systemGreen
+        } else {
+            
+            eightCharMessage.tintColor = .gray }
+        
+        let hasSpecialCharacters = pass.range(of: ".*[^A-Za-z0-9].*", options: .regularExpression) != nil
+        if hasSpecialCharacters { 
+            
+            specialCharMessage.tintColor = .systemGreen
+        } else {
+            
+            specialCharMessage.tintColor = .gray }
+        
+        let hasUpperCharacters = pass.range(of: ".*[A-Z].*", options: .regularExpression) != nil
+        if hasUpperCharacters {
+            
+            upperCharMessage.tintColor = .systemGreen
+        } else {
+            
+            upperCharMessage.tintColor = .gray
+        }
+        
     }
 }
 
