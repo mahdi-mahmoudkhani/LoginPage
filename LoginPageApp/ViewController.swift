@@ -68,12 +68,6 @@ class ViewController: UIViewController {
         self.scrollView.addSubview(contentView)
         contentView.translatesAutoresizingMaskIntoConstraints = false
         
-        //
-        let hConst = contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
-        hConst.isActive = true
-        hConst.priority = UILayoutPriority(50)
-        //
-        
         NSLayoutConstraint.activate( [
         
             scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
@@ -86,7 +80,8 @@ class ViewController: UIViewController {
             contentView.leadingAnchor.constraint(equalTo: self.scrollView.leadingAnchor),
             contentView.trailingAnchor.constraint(equalTo: self.scrollView.trailingAnchor),
             
-            contentView.widthAnchor.constraint(equalTo: self.scrollView.widthAnchor)
+            contentView.widthAnchor.constraint(equalTo: self.scrollView.widthAnchor),
+            contentView.heightAnchor.constraint(equalTo: self.contentView.heightAnchor)
             
         ] )
         
@@ -139,7 +134,7 @@ class ViewController: UIViewController {
         NSLayoutConstraint.activate( [
             
             SignInTitle.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 28),
-            SignInTitle.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 102),
+            SignInTitle.topAnchor.constraint(equalTo: self.logo.bottomAnchor, constant: 57),
             SignInTitle.widthAnchor.constraint(equalToConstant: 128),
             SignInTitle.heightAnchor.constraint(equalToConstant: 45),
             
@@ -170,15 +165,15 @@ class ViewController: UIViewController {
         NSLayoutConstraint.activate( [
             
             registerMessageL1.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 28.48),
-            registerMessageL1.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 169),
+            registerMessageL1.topAnchor.constraint(equalTo: self.SignInTitle.bottomAnchor, constant: 22),
             registerMessageL1.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -31),
             
             registerMessageL2.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 28.48),
-            registerMessageL2.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 199),
+            registerMessageL2.topAnchor.constraint(equalTo: self.registerMessageL1.bottomAnchor, constant: 6),
             registerMessageL2.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -31),
             
             registerButton.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 107),
-            registerButton.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 193)
+            registerButton.topAnchor.constraint(equalTo: self.registerMessageL1.bottomAnchor)
             
         ] )
     }
@@ -194,7 +189,7 @@ class ViewController: UIViewController {
         NSLayoutConstraint.activate( [
             
             emailTitle.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 28.48),
-            emailTitle.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 275),
+            emailTitle.topAnchor.constraint(equalTo: self.registerMessageL2.bottomAnchor, constant: 52),
             emailTitle.widthAnchor.constraint(equalToConstant: 36),
             emailTitle.heightAnchor.constraint(equalToConstant: 20),
             
@@ -231,7 +226,7 @@ class ViewController: UIViewController {
         
             emailField.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 28),
             emailField.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
-            emailField.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 306),
+            emailField.topAnchor.constraint(equalTo: self.emailTitle.bottomAnchor, constant: 11),
             emailField.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -28),
             emailField.heightAnchor.constraint(equalToConstant: 24)
 
@@ -256,7 +251,7 @@ class ViewController: UIViewController {
         NSLayoutConstraint.activate( [
             
             passTitle.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 28.48),
-            passTitle.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 388),
+            passTitle.topAnchor.constraint(equalTo: self.emailField.bottomAnchor, constant: 58),
             passTitle.widthAnchor.constraint(equalToConstant: 65),
             passTitle.heightAnchor.constraint(equalToConstant: 20),
             
@@ -300,8 +295,7 @@ class ViewController: UIViewController {
         
             passField.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 27),
             passField.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
-            passField.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 420),
-//            passField.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -28),
+            passField.topAnchor.constraint(equalTo: self.passTitle.bottomAnchor, constant: 12),
             passField.heightAnchor.constraint(equalToConstant: 20)
 
         ] )
@@ -330,7 +324,7 @@ class ViewController: UIViewController {
         
         NSLayoutConstraint.activate( [
         
-            rememberMeButton.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 463),
+            rememberMeButton.topAnchor.constraint(equalTo: self.passField.bottomAnchor, constant: 23),
             rememberMeButton.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 29)
             
         ] )
@@ -351,7 +345,7 @@ class ViewController: UIViewController {
         
         NSLayoutConstraint.activate( [
         
-            button.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 463),
+            button.topAnchor.constraint(equalTo: self.passField.bottomAnchor, constant: 23),
             button.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -28)
         
         ] )
@@ -379,7 +373,7 @@ class ViewController: UIViewController {
         NSLayoutConstraint.activate( [
         
             loginButton.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
-            loginButton.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 567),
+            loginButton.topAnchor.constraint(equalTo: self.rememberMeButton.bottomAnchor, constant: 60),
             loginButton.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 28.48),
             loginButton.heightAnchor.constraint(equalToConstant: 53.0)
             
@@ -398,7 +392,7 @@ class ViewController: UIViewController {
         NSLayoutConstraint.activate( [
             
             optionsTitle.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
-            optionsTitle.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 642),
+            optionsTitle.topAnchor.constraint(equalTo: self.loginButton.bottomAnchor, constant: 42),
             
         ] )
     }
@@ -420,13 +414,15 @@ class ViewController: UIViewController {
         NSLayoutConstraint.activate( [
             
             appleLogo.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
-            appleLogo.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 691),
+            appleLogo.topAnchor.constraint(equalTo: self.optionsTitle.bottomAnchor, constant: 25),
             
             facebookLogo.rightAnchor.constraint(equalTo: appleLogo.leftAnchor, constant: -17),
-            facebookLogo.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 691),
+            facebookLogo.topAnchor.constraint(equalTo: self.optionsTitle.bottomAnchor, constant: 25),
             
             googleLogo.leftAnchor.constraint(equalTo: appleLogo.rightAnchor, constant: 17),
-            googleLogo.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 691)
+            googleLogo.topAnchor.constraint(equalTo: self.optionsTitle.bottomAnchor, constant: 25),
+            
+            appleLogo.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -150)
             
         ] )
     }
@@ -478,7 +474,7 @@ class ViewController: UIViewController {
         
         NSLayoutConstraint.activate( [
         
-            eightCharMessage.topAnchor.constraint(equalTo:self.contentView.topAnchor, constant: 490),
+            eightCharMessage.topAnchor.constraint(equalTo:self.rememberMeButton.bottomAnchor, constant: 5),
             eightCharMessage.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 27.3),
             
             specialCharMessage.topAnchor.constraint(equalTo: eightCharMessage.bottomAnchor, constant: -5),
