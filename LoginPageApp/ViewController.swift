@@ -9,6 +9,18 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    private let scrollView : UIScrollView = {
+        
+        let sv = UIScrollView()
+        return sv
+    }()
+    
+    private let contentView : UIView = {
+        
+        let v = UIView()
+        return v
+    }()
+    
     let passIsVisible = UIButton()
     let passField = UITextField()
     let rememberMeButton = UIButton()
@@ -30,8 +42,41 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        scrollViewSetup()
         loadItems()
         self.dismissKeyboard()
+    }
+    
+    private func scrollViewSetup() {
+        
+        self.view.addSubview(scrollView)
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.scrollView.addSubview(contentView)
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        
+        //
+        let hConst = contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
+        hConst.isActive = true
+        hConst.priority = UILayoutPriority(50)
+        //
+        
+        NSLayoutConstraint.activate( [
+        
+            scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
+            
+            contentView.topAnchor.constraint(equalTo: self.scrollView.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: self.scrollView.bottomAnchor),
+            contentView.leadingAnchor.constraint(equalTo: self.scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: self.scrollView.trailingAnchor),
+            
+            contentView.widthAnchor.constraint(equalTo: self.scrollView.widthAnchor)
+            
+        ] )
+        
     }
     
     private func loadItems() {
