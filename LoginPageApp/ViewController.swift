@@ -520,6 +520,7 @@ class ViewController: UIViewController {
         if self.passField.isEditing {
             
             passBottomLine.backgroundColor = UIColor(red: 1, green: 67 / 255, blue: 42 / 255, alpha: 1).cgColor
+            self.scrollView.setContentOffset(CGPoint(x: 0, y: self.registerButton.frame.maxX), animated: true)
         } else {
             
             passBottomLine.backgroundColor = UIColor.black.cgColor
