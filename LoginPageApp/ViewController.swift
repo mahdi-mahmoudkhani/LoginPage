@@ -21,12 +21,25 @@ class ViewController: UIViewController {
         return v
     }()
     
+    let logo = UILabel()
+    let SignInTitle = UILabel()
+    let registerMessageL1 = UILabel()
+    let registerMessageL2 = UILabel()
+    let registerButton = UIButton()
+    let emailTitle = UILabel()
+    let passTitle = UILabel()
     let passIsVisible = UIButton()
     let passField = UITextField()
     let rememberMeButton = UIButton()
     let emailBottomLine = CALayer()
     let emailField = UITextField()
     let passBottomLine = CALayer()
+    let loginButton = UIButton()
+    let optionsTitle = UILabel()
+    let appleLogo = UIButton()
+    let facebookLogo = UIButton()
+    let googleLogo = UIButton()
+    
     
     let eightCharMessage = UIButton()
     let specialCharMessage = UIButton()
@@ -98,8 +111,6 @@ class ViewController: UIViewController {
     
     private func loadAppLogo() {
         
-        let logo = UILabel()
-        
         logo.translatesAutoresizingMaskIntoConstraints = false
         logo.text = "Your Logo"
         logo.font = UIFont(name: "Poppins-SemiBold", size: 18)
@@ -119,8 +130,6 @@ class ViewController: UIViewController {
     
     private func loadSignInTitle() {
         
-        let SignInTitle = UILabel()
-        
         SignInTitle.translatesAutoresizingMaskIntoConstraints = false
         SignInTitle.text = "Sign in"
         SignInTitle.font = UIFont(name: "Poppins-Medium", size: 30)
@@ -138,10 +147,6 @@ class ViewController: UIViewController {
     }
     
     private func loadRegisterMessage() {
-        
-        let registerMessageL1 = UILabel()
-        let registerMessageL2 = UILabel()
-        let registerButton = UIButton()
         
         registerMessageL1.translatesAutoresizingMaskIntoConstraints = false
         registerMessageL2.translatesAutoresizingMaskIntoConstraints = false
@@ -180,20 +185,18 @@ class ViewController: UIViewController {
     
     private func loadEmailTitle() {
         
-        let title = UILabel()
+        emailTitle.translatesAutoresizingMaskIntoConstraints = false
+        emailTitle.text = "Email"
+        emailTitle.font = UIFont(name: "Poppins-Medium", size: 13)
         
-        title.translatesAutoresizingMaskIntoConstraints = false
-        title.text = "Email"
-        title.font = UIFont(name: "Poppins-Medium", size: 13)
-        
-        self.view.addSubview(title)
+        self.view.addSubview(emailTitle)
         
         NSLayoutConstraint.activate( [
             
-            title.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 28.48),
-            title.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 275),
-            title.widthAnchor.constraint(equalToConstant: 36),
-            title.heightAnchor.constraint(equalToConstant: 20),
+            emailTitle.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 28.48),
+            emailTitle.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 275),
+            emailTitle.widthAnchor.constraint(equalToConstant: 36),
+            emailTitle.heightAnchor.constraint(equalToConstant: 20),
             
         ] )
     }
@@ -244,20 +247,18 @@ class ViewController: UIViewController {
     
     private func loadPasswordTitle() {
         
-        let title = UILabel()
+        passTitle.translatesAutoresizingMaskIntoConstraints = false
+        passTitle.text = "Password"
+        passTitle.font = UIFont(name: "Poppins-Medium", size: 13)
         
-        title.translatesAutoresizingMaskIntoConstraints = false
-        title.text = "Password"
-        title.font = UIFont(name: "Poppins-Medium", size: 13)
-        
-        self.view.addSubview(title)
+        self.view.addSubview(passTitle)
         
         NSLayoutConstraint.activate( [
             
-            title.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 28.48),
-            title.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 388),
-            title.widthAnchor.constraint(equalToConstant: 65),
-            title.heightAnchor.constraint(equalToConstant: 20),
+            passTitle.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 28.48),
+            passTitle.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 388),
+            passTitle.widthAnchor.constraint(equalToConstant: 65),
+            passTitle.heightAnchor.constraint(equalToConstant: 20),
             
         ] )
     }
@@ -359,58 +360,50 @@ class ViewController: UIViewController {
     
     private func loadLoginButton() {
         
-        let button = UIButton()
+        loginButton.translatesAutoresizingMaskIntoConstraints = false
+        loginButton.configuration = .filled()
+        loginButton.configuration?.title = "Login"
+        loginButton.configuration?.baseBackgroundColor = UIColor(red: 1, green: 67 / 255, blue: 42 / 255, alpha: 1)
+        loginButton.configuration?.baseForegroundColor = UIColor.white
+        loginButton.configuration?.background.cornerRadius = 32.0
+        loginButton.configuration?.attributedTitle = AttributedString("Login")
+        loginButton.configuration?.attributedTitle?.font = UIFont(name: "Poppins-Medium", size: 17.0)
         
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.configuration = .filled()
-        button.configuration?.title = "Login"
-        button.configuration?.baseBackgroundColor = UIColor(red: 1, green: 67 / 255, blue: 42 / 255, alpha: 1)
-        button.configuration?.baseForegroundColor = UIColor.white
-        button.configuration?.background.cornerRadius = 32.0
-        button.configuration?.attributedTitle = AttributedString("Login")
-        button.configuration?.attributedTitle?.font = UIFont(name: "Poppins-Medium", size: 17.0)
+        loginButton.layer.shadowOffset = CGSize(width: 0.0, height: 4.0)
+        loginButton.layer.shadowColor = UIColor.black.cgColor
+        loginButton.layer.shadowOpacity = 0.25
+        loginButton.layer.shadowRadius = 26
         
-        button.layer.shadowOffset = CGSize(width: 0.0, height: 4.0)
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 0.25
-        button.layer.shadowRadius = 26
-        
-        self.view.addSubview(button)
+        self.view.addSubview(loginButton)
         
         NSLayoutConstraint.activate( [
         
-            button.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
-            button.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 567),
-            button.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 28.48),
-            button.heightAnchor.constraint(equalToConstant: 53.0)
+            loginButton.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
+            loginButton.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 567),
+            loginButton.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 28.48),
+            loginButton.heightAnchor.constraint(equalToConstant: 53.0)
             
         ] )
     }
     
     private func loadLoginOptionsTitle() {
         
-        let title = UILabel()
+        optionsTitle.translatesAutoresizingMaskIntoConstraints = false
+        optionsTitle.text = "or continue with"
+        optionsTitle.font = UIFont(name: "Poppins-Medium", size: 16)
+        optionsTitle.textColor = UIColor(red: 181 / 255, green: 181 / 255, blue: 181 / 255, alpha: 1.0)
         
-        title.translatesAutoresizingMaskIntoConstraints = false
-        title.text = "or continue with"
-        title.font = UIFont(name: "Poppins-Medium", size: 16)
-        title.textColor = UIColor(red: 181 / 255, green: 181 / 255, blue: 181 / 255, alpha: 1.0)
-        
-        self.view.addSubview(title)
+        self.view.addSubview(optionsTitle)
 
         NSLayoutConstraint.activate( [
             
-            title.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
-            title.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 642),
+            optionsTitle.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
+            optionsTitle.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 642),
             
         ] )
     }
     
     private func loadLoginOptionsLogos() {
-        
-        let appleLogo = UIButton()
-        let facebookLogo = UIButton()
-        let googleLogo = UIButton()
         
         appleLogo.translatesAutoresizingMaskIntoConstraints = false
         facebookLogo.translatesAutoresizingMaskIntoConstraints = false
