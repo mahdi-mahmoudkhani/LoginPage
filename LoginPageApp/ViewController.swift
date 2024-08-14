@@ -115,7 +115,7 @@ class ViewController: UIViewController {
         logo.text = "Your Logo"
         logo.font = UIFont(name: "Poppins-SemiBold", size: 18)
         
-        self.view.addSubview(logo)
+        self.contentView.addSubview(logo)
         
         NSLayoutConstraint.activate( [
             
@@ -134,7 +134,7 @@ class ViewController: UIViewController {
         SignInTitle.text = "Sign in"
         SignInTitle.font = UIFont(name: "Poppins-Medium", size: 30)
         
-        self.view.addSubview(SignInTitle)
+        self.contentView.addSubview(SignInTitle)
 
         NSLayoutConstraint.activate( [
             
@@ -163,9 +163,9 @@ class ViewController: UIViewController {
         registerButton.titleLabel?.font = UIFont(name: "Poppins-SemiBold", size: 16)
         registerButton.setTitleColor(UIColor.gray, for: .highlighted)
         
-        self.view.addSubview(registerMessageL1)
-        self.view.addSubview(registerMessageL2)
-        self.view.addSubview(registerButton)
+        self.contentView.addSubview(registerMessageL1)
+        self.contentView.addSubview(registerMessageL2)
+        self.contentView.addSubview(registerButton)
         
         NSLayoutConstraint.activate( [
             
@@ -189,7 +189,7 @@ class ViewController: UIViewController {
         emailTitle.text = "Email"
         emailTitle.font = UIFont(name: "Poppins-Medium", size: 13)
         
-        self.view.addSubview(emailTitle)
+        self.contentView.addSubview(emailTitle)
         
         NSLayoutConstraint.activate( [
             
@@ -225,7 +225,7 @@ class ViewController: UIViewController {
         emailField.addTarget(self, action: #selector(UIViewController.dismissKeyboardTouchOutside), for: .editingDidEndOnExit)
         emailField.addTarget(self, action: #selector(changeEmailButtomLineColor), for: .allEvents)
         
-        self.view.addSubview(emailField)
+        self.contentView.addSubview(emailField)
         
         NSLayoutConstraint.activate( [
         
@@ -251,7 +251,7 @@ class ViewController: UIViewController {
         passTitle.text = "Password"
         passTitle.font = UIFont(name: "Poppins-Medium", size: 13)
         
-        self.view.addSubview(passTitle)
+        self.contentView.addSubview(passTitle)
         
         NSLayoutConstraint.activate( [
             
@@ -294,7 +294,7 @@ class ViewController: UIViewController {
         passField.addTarget(self, action: #selector(changePassButtomLineColor), for: .allEvents)
         passField.addTarget(self, action: #selector(checkPass), for: .allEditingEvents)
         
-        self.view.addSubview(passField)
+        self.contentView.addSubview(passField)
         
         NSLayoutConstraint.activate( [
         
@@ -326,7 +326,7 @@ class ViewController: UIViewController {
         rememberMeButton.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 6.0, leading: 0.0, bottom: 0.0, trailing: 0.0)
         rememberMeButton.addTarget(self, action: #selector(changeRememberCheckBox), for: .touchUpInside)
         
-        self.view.addSubview(rememberMeButton)
+        self.contentView.addSubview(rememberMeButton)
         
         NSLayoutConstraint.activate( [
         
@@ -347,7 +347,7 @@ class ViewController: UIViewController {
         button.setTitleColor(.gray, for: .highlighted)
         button.titleLabel?.font = UIFont(name: "Poppins-Light", size: 12)
         
-        self.view.addSubview(button)
+        self.contentView.addSubview(button)
         
         NSLayoutConstraint.activate( [
         
@@ -374,7 +374,7 @@ class ViewController: UIViewController {
         loginButton.layer.shadowOpacity = 0.25
         loginButton.layer.shadowRadius = 26
         
-        self.view.addSubview(loginButton)
+        self.contentView.addSubview(loginButton)
         
         NSLayoutConstraint.activate( [
         
@@ -393,7 +393,7 @@ class ViewController: UIViewController {
         optionsTitle.font = UIFont(name: "Poppins-Medium", size: 16)
         optionsTitle.textColor = UIColor(red: 181 / 255, green: 181 / 255, blue: 181 / 255, alpha: 1.0)
         
-        self.view.addSubview(optionsTitle)
+        self.contentView.addSubview(optionsTitle)
 
         NSLayoutConstraint.activate( [
             
@@ -413,9 +413,9 @@ class ViewController: UIViewController {
         facebookLogo.setImage(UIImage(named: "Facebook"), for: .normal)
         googleLogo.setImage(UIImage(named: "google"), for: .normal)
         
-        self.view.addSubview(appleLogo)
-        self.view.addSubview(facebookLogo)
-        self.view.addSubview(googleLogo)
+        self.contentView.addSubview(appleLogo)
+        self.contentView.addSubview(facebookLogo)
+        self.contentView.addSubview(googleLogo)
         
         NSLayoutConstraint.activate( [
             
@@ -472,9 +472,9 @@ class ViewController: UIViewController {
         specialCharMessage.isHidden = true
         upperCharMessage.isHidden = true
         
-        self.view.addSubview(eightCharMessage)
-        self.view.addSubview(specialCharMessage)
-        self.view.addSubview(upperCharMessage)
+        self.contentView.addSubview(eightCharMessage)
+        self.contentView.addSubview(specialCharMessage)
+        self.contentView.addSubview(upperCharMessage)
         
         NSLayoutConstraint.activate( [
         
