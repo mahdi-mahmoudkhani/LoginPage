@@ -60,6 +60,16 @@ class ViewController: UIViewController {
         self.dismissKeyboard()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        emailField.layoutIfNeeded()
+        emailBottomLine.frame = CGRect(x: 0, y: emailField.bounds.height + 10, width: emailField.bounds.width, height: 2)
+        
+        passField.layoutIfNeeded()
+        passBottomLine.frame = CGRect(x: 0, y: passField.bounds.height + 10, width: passField.bounds.width, height: 2)
+    }
+    
     private func scrollViewSetup() {
         
         self.view.addSubview(scrollView)
@@ -220,7 +230,10 @@ class ViewController: UIViewController {
         emailField.addTarget(self, action: #selector(UIViewController.dismissKeyboardTouchOutside), for: .editingDidEndOnExit)
         emailField.addTarget(self, action: #selector(changeEmailButtomLineColor), for: .allEvents)
         
+        emailBottomLine.backgroundColor = UIColor.black.cgColor
+        
         self.contentView.addSubview(emailField)
+        self.emailField.layer.addSublayer(emailBottomLine)
         
         NSLayoutConstraint.activate( [
         
@@ -231,12 +244,6 @@ class ViewController: UIViewController {
             emailField.heightAnchor.constraint(equalToConstant: 24)
 
         ] )
-        
-        emailField.layoutIfNeeded()
-        
-        emailBottomLine.frame = CGRect(x: 0, y: emailField.frame.height + 7 , width: emailField.frame.width , height: 2)
-        emailBottomLine.backgroundColor = UIColor.black.cgColor
-        emailField.layer.addSublayer(emailBottomLine)
         
     }
     
@@ -289,7 +296,10 @@ class ViewController: UIViewController {
         passField.addTarget(self, action: #selector(changePassButtomLineColor), for: .allEvents)
         passField.addTarget(self, action: #selector(checkPass), for: .allEditingEvents)
         
+        passBottomLine.backgroundColor = UIColor.black.cgColor
+        
         self.contentView.addSubview(passField)
+        self.passField.layer.addSublayer(passBottomLine)
         
         NSLayoutConstraint.activate( [
         
@@ -300,11 +310,6 @@ class ViewController: UIViewController {
 
         ] )
         
-        passField.layoutIfNeeded()
-        
-        passBottomLine.frame = CGRect(x: 0, y: passField.frame.height + 10 , width: passField.frame.width , height: 2)
-        passBottomLine.backgroundColor = UIColor.black.cgColor
-        passField.layer.addSublayer(passBottomLine)
     }
     
     private func loadRememberMe() {
@@ -422,7 +427,7 @@ class ViewController: UIViewController {
             googleLogo.leftAnchor.constraint(equalTo: appleLogo.rightAnchor, constant: 17),
             googleLogo.topAnchor.constraint(equalTo: self.optionsTitle.bottomAnchor, constant: 25),
             
-            appleLogo.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -150)
+            appleLogo.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -18)
             
         ] )
     }
