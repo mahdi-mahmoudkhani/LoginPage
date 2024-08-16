@@ -58,6 +58,7 @@ class ViewController: UIViewController {
         scrollViewSetup()
         loadItems()
         self.dismissKeyboard()
+        self.setupKeyboardHiding()
     }
     
     override func viewDidLayoutSubviews() {
@@ -491,6 +492,36 @@ class ViewController: UIViewController {
         ] )
     }
     
+    func setupKeyboardHiding() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(sender: NSNotification) {
+        
+        guard let userInfo = sender.userInfo,
+              let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
+              let currentTextField = UIResponder.currentFirst() as? UITextField else { return }
+        
+        let keyboardTopY = keyboardFrame.cgRectValue.origin.y
+        let convertedTextFieldFrame = view.convert(currentTextField.frame, from: currentTextField.superview)
+        let textFieldBottomY = convertedTextFieldFrame.origin.y + convertedTextFieldFrame.size.height
+
+        if textFieldBottomY > keyboardTopY {
+            let textBoxY = convertedTextFieldFrame.origin.y
+            let newFrameY = (textBoxY - keyboardTopY / 2)
+            view.frame.origin.y = -newFrameY
+        }
+
+    }
+    
+    @objc func keyboardWillHide() {
+        
+        view.frame.origin.y = 0
+    }
+
+    
     @objc func changePassVisibility() {
         
         passField.isSecureTextEntry = !passField.isSecureTextEntry
@@ -525,7 +556,6 @@ class ViewController: UIViewController {
         if self.passField.isEditing {
             
             passBottomLine.backgroundColor = UIColor(red: 1, green: 67 / 255, blue: 42 / 255, alpha: 1).cgColor
-            self.scrollView.setContentOffset(CGPoint(x: 0, y: self.registerButton.frame.maxX), animated: true)
         } else {
             
             passBottomLine.backgroundColor = UIColor.black.cgColor
@@ -596,5 +626,24 @@ extension UIViewController {
     
     @objc func dismissKeyboardTouchOutside() {
         view.endEditing(true)
+    }
+}
+
+extension UIResponder {
+
+    private struct Static {
+        static weak var responder: UIResponder?
+    }
+
+    /// Finds the current first responder
+    /// - Returns: the current UIResponder if it exists
+    static func currentFirst() -> UIResponder? {
+        Static.responder = nil
+        UIApplication.shared.sendAction(#selector(UIResponder._trap), to: nil, from: nil, for: nil)
+        return Static.responder
+    }
+
+    @objc private func _trap() {
+        Static.responder = self
     }
 }
