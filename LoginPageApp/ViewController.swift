@@ -69,6 +69,9 @@ class ViewController: UIViewController {
         
         self.passField.layoutIfNeeded()
         self.passBottomLine.frame = CGRect(x: 0, y: self.passField.bounds.height + 10, width: self.passField.bounds.width, height: 2)
+        
+        self.changeEmailButtomLineColor()
+        self.changePassButtomLineColor()
     }
     
     private func scrollViewSetup() {
@@ -210,7 +213,7 @@ class ViewController: UIViewController {
     private func loadEmailField() {
 
         let leftViewPadding = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: self.emailField.frame.height))
-        let messageImageView = UIImageView(image: UIImage(named: "message"))
+        let messageImageView = UIImageView(image: UIImage(named: "message")?.withTintColor(.label))
         
         messageImageView.contentMode = .left
         messageImageView.frame = CGRect(x: 0, y: 0, width: 20, height: self.emailField.frame.height)
@@ -218,7 +221,7 @@ class ViewController: UIViewController {
         
         self.emailField.translatesAutoresizingMaskIntoConstraints = false
         self.emailField.attributedPlaceholder = NSAttributedString(string: "Enter your email address", attributes: [
-            NSAttributedString.Key.foregroundColor: UIColor.black,
+            NSAttributedString.Key.foregroundColor: UIColor.label,
             NSAttributedString.Key.font : UIFont(name: "Poppins-Regular", size: 16.0) as Any ] )
         
         self.emailField.leftView = leftViewPadding
@@ -230,8 +233,6 @@ class ViewController: UIViewController {
 
         self.emailField.addTarget(self, action: #selector(UIViewController.dismissKeyboardTouchOutside), for: .editingDidEndOnExit)
         self.emailField.addTarget(self, action: #selector(self.changeEmailButtomLineColor), for: .allEvents)
-        
-        self.emailBottomLine.backgroundColor = UIColor.black.cgColor
         
         self.contentView.addSubview(self.emailField)
         self.emailField.layer.addSublayer(self.emailBottomLine)
@@ -269,7 +270,7 @@ class ViewController: UIViewController {
     private func loadPsswordField() {
         
         let leftViewFrame = UIView(frame: CGRect(x: 0, y: 0, width: 27, height: self.passField.frame.height))
-        let leftViewImage = UIImageView(image: UIImage(named: "padlock"))
+        let leftViewImage = UIImageView(image: UIImage(named: "padlock")?.withTintColor(.label))
         
         leftViewImage.contentMode = .left
         leftViewImage.frame = CGRect(x: 0, y: 0, width: 20, height: self.passField.frame.height)
@@ -277,12 +278,12 @@ class ViewController: UIViewController {
         
         self.passField.translatesAutoresizingMaskIntoConstraints = false
         self.passField.attributedPlaceholder = NSAttributedString(string: "Enter your Password", attributes: [
-            NSAttributedString.Key.foregroundColor: UIColor.black,
+            NSAttributedString.Key.foregroundColor: UIColor.label,
             NSAttributedString.Key.font : UIFont(name: "Poppins-Regular", size: 13.0) as Any ] )
         self.passField.leftView = leftViewFrame
     
-        self.passIsVisible.setImage(UIImage(named: "invisible"), for: .normal)
-        self.passIsVisible.setImage(UIImage(named: "eye-fill"), for: .highlighted)
+        self.passIsVisible.setImage(UIImage(named: "invisible")?.withTintColor(.label), for: .normal)
+        self.passIsVisible.setImage(UIImage(named: "eye-fill")?.withTintColor(.label), for: .highlighted)
         self.passIsVisible.addTarget(self, action: #selector(self.changePassVisibility), for: [.touchDown, .touchUpInside])
         self.passField.rightView = self.passIsVisible
 
@@ -296,8 +297,6 @@ class ViewController: UIViewController {
         self.passField.addTarget(self, action: #selector(UIViewController.dismissKeyboardTouchOutside), for: .editingDidEndOnExit)
         self.passField.addTarget(self, action: #selector(self.changePassButtomLineColor), for: .allEvents)
         self.passField.addTarget(self, action: #selector(self.checkPass), for: .allEditingEvents)
-        
-        self.passBottomLine.backgroundColor = UIColor.black.cgColor
         
         self.contentView.addSubview(self.passField)
         self.passField.layer.addSublayer(self.passBottomLine)
@@ -322,7 +321,7 @@ class ViewController: UIViewController {
         self.rememberMeButton.configuration?.attributedTitle = AttributedString("Remember me")
         self.rememberMeButton.configuration?.attributedTitle?.font = UIFont(name: "Poppins-Light", size: 12)
         self.rememberMeButton.configuration?.baseBackgroundColor = UIColor.systemBackground
-        self.rememberMeButton.configuration?.baseForegroundColor = UIColor.black
+        self.rememberMeButton.configuration?.baseForegroundColor = UIColor.label
         self.rememberMeButton.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 6.0, leading: 0.0, bottom: 0.0, trailing: 0.0)
         self.rememberMeButton.addTarget(self, action: #selector(self.changeRememberCheckBox), for: .touchUpInside)
         
@@ -535,7 +534,7 @@ class ViewController: UIViewController {
             self.rememberMeButton.configuration?.image = UIImage(named: "Rectangle")
         } else {
             
-            self.rememberMeButton.configuration?.image = UIImage(named: "checkbox-marked")
+            self.rememberMeButton.configuration?.image = UIImage(named: "checkbox-marked")?.withTintColor(.label)
         }
     }
     
@@ -546,7 +545,7 @@ class ViewController: UIViewController {
             self.emailBottomLine.backgroundColor = UIColor(red: 1, green: 67 / 255, blue: 42 / 255, alpha: 1).cgColor
         } else {
             
-            self.emailBottomLine.backgroundColor = UIColor.black.cgColor
+            self.emailBottomLine.backgroundColor = UIColor.label.cgColor
         }
     }
     
@@ -557,7 +556,7 @@ class ViewController: UIViewController {
             self.passBottomLine.backgroundColor = UIColor(red: 1, green: 67 / 255, blue: 42 / 255, alpha: 1).cgColor
         } else {
             
-            self.passBottomLine.backgroundColor = UIColor.black.cgColor
+            self.passBottomLine.backgroundColor = UIColor.label.cgColor
         }
     }
     
