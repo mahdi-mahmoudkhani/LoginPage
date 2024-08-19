@@ -40,7 +40,7 @@ class ViewController: UIViewController {
     let facebookLogo = UIButton()
     let googleLogo = UIButton()
     
-    
+    let messagesStack = UIStackView()
     let eightCharMessage = UIButton()
     let specialCharMessage = UIButton()
     let upperCharMessage = UIButton()
@@ -112,10 +112,11 @@ class ViewController: UIViewController {
         self.loadPsswordField()
         self.loadRememberMe()
         self.loadForgotPassword()
+        self.loadPassValidationStack()
+        self.loadPassValidationMessage()
         self.loadLoginButton()
         self.loadLoginOptionsTitle()
         self.loadLoginOptionsLogos()
-        self.loadPassValidationMessage()
     }
     
     private func loadAppLogo() {
@@ -431,6 +432,25 @@ class ViewController: UIViewController {
         ] )
     }
     
+    private func loadPassValidationStack() {
+        
+        self.messagesStack.translatesAutoresizingMaskIntoConstraints = false
+        self.messagesStack.axis = .vertical
+        self.messagesStack.alignment = .leading
+        self.messagesStack.spacing = -5
+        self.messagesStack.alpha = 0.0
+        
+        self.contentView.addSubview(self.messagesStack)
+        
+        NSLayoutConstraint.activate( [
+        
+            self.messagesStack.topAnchor.constraint(equalTo: self.rememberMeButton.bottomAnchor, constant: 5),
+            self.messagesStack.leadingAnchor.constraint(equalTo: self.rememberMeButton.leadingAnchor, constant: -1)
+            
+        ] )
+        
+    }
+    
     private func loadPassValidationMessage() {
         
         let font = UIFont(name: "Poppins-SemiBold", size: 10)
@@ -468,26 +488,10 @@ class ViewController: UIViewController {
         self.upperCharMessage.tintColor = .systemRed
         self.upperCharMessage.isUserInteractionEnabled = false
         
-        self.eightCharMessage.isHidden = true
-        self.specialCharMessage.isHidden = true
-        self.upperCharMessage.isHidden = true
-        
-        self.contentView.addSubview(self.eightCharMessage)
-        self.contentView.addSubview(self.specialCharMessage)
-        self.contentView.addSubview(self.upperCharMessage)
-        
-        NSLayoutConstraint.activate( [
-        
-            self.eightCharMessage.topAnchor.constraint(equalTo:self.rememberMeButton.bottomAnchor, constant: 5),
-            self.eightCharMessage.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 27.3),
-            
-            self.specialCharMessage.topAnchor.constraint(equalTo: self.eightCharMessage.bottomAnchor, constant: -5),
-            self.specialCharMessage.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 27.3),
-            
-            self.upperCharMessage.topAnchor.constraint(equalTo: self.specialCharMessage.bottomAnchor, constant: -5),
-            self.upperCharMessage.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 27.3)
-            
-        ] )
+        self.messagesStack.addArrangedSubview(self.eightCharMessage)
+        self.messagesStack.addArrangedSubview(self.specialCharMessage)
+        self.messagesStack.addArrangedSubview(self.upperCharMessage)
+
     }
     
     func setupKeyboardHiding() {
@@ -566,49 +570,65 @@ class ViewController: UIViewController {
         
         if pass != "" {
             
-            self.eightCharMessage.isHidden = false
-            self.specialCharMessage.isHidden = false
-            self.upperCharMessage.isHidden = false
+            UIStackView.animate(withDuration: 0.3) {
+                
+                self.messagesStack.alpha = 1.0
+                
+            }
+
             
         } else {
             
-            self.eightCharMessage.isHidden = true
-            self.specialCharMessage.isHidden = true
-            self.upperCharMessage.isHidden = true
+            UIView.animate(withDuration: 0.3) {
+                
+                self.messagesStack.alpha = 0.0
+            }
         }
         
         if pass.count >= 8 {
             
-            self.eightCharMessage.tintColor = .systemGreen
-            self.eightCharMessage.configuration?.image = self.checkMarkImage
+            UIStackView.animate(withDuration: 0.2) {
+                self.eightCharMessage.tintColor = .systemGreen
+                self.eightCharMessage.configuration?.image = self.checkMarkImage
+            }
         } else {
             
-            self.eightCharMessage.tintColor = .systemRed
-            self.eightCharMessage.configuration?.image = self.xMarkImage
+            UIStackView.animate(withDuration: 0.2) {
+                self.eightCharMessage.tintColor = .systemRed
+                self.eightCharMessage.configuration?.image = self.xMarkImage
+            }
         }
             
         
         let hasSpecialCharacters = pass.range(of: ".*[^A-Za-z0-9].*", options: .regularExpression) != nil
         if hasSpecialCharacters { 
             
-            self.specialCharMessage.tintColor = .systemGreen
-            self.specialCharMessage.configuration?.image = self.checkMarkImage
+            UIStackView.animate(withDuration: 0.2) {
+                self.specialCharMessage.tintColor = .systemGreen
+                self.specialCharMessage.configuration?.image = self.checkMarkImage
+            }
         } else {
             
-            self.specialCharMessage.tintColor = .systemRed
-            self.specialCharMessage.configuration?.image = self.xMarkImage
+            UIStackView.animate(withDuration: 0.2) {
+                self.specialCharMessage.tintColor = .systemRed
+                self.specialCharMessage.configuration?.image = self.xMarkImage
+            }
             
         }
         
         let hasUpperCharacters = pass.range(of: ".*[A-Z].*", options: .regularExpression) != nil
         if hasUpperCharacters {
             
-            self.upperCharMessage.tintColor = .systemGreen
-            self.upperCharMessage.configuration?.image = self.checkMarkImage
+            UIStackView.animate(withDuration: 0.2) {
+                self.upperCharMessage.tintColor = .systemGreen
+                self.upperCharMessage.configuration?.image = self.checkMarkImage
+            }
         } else {
             
-            self.upperCharMessage.tintColor = .systemRed
-            self.upperCharMessage.configuration?.image = self.xMarkImage
+            UIStackView.animate(withDuration: 0.2) {
+                self.upperCharMessage.tintColor = .systemRed
+                self.upperCharMessage.configuration?.image = self.xMarkImage
+            }
         }
         
     }
